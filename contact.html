@@ -82,8 +82,8 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span class="fa fa-light fa-globe"></span></a>
                     <div class="dropdown-menu fade-up m-0">
-                        <a href="about.html" class="dropdown-item active">English</a>
-                        <a href="nosotros.html" class="dropdown-item">Spanish</a>
+                        <a href="contact.html" class="dropdown-item active">English</a>
+                        <a href="contacto.html" class="dropdown-item">Spanish</a>
                     </div>
                 </div>    
             </div>
@@ -150,34 +150,43 @@
                 </div>
                 <div class="col-lg-9 mx-auto" data-wow-delay="0.5s">
                     <p class="mb-4">Please do not hesitate to contact us should you require any further information. Kindly send us a message, and we will respond at our earliest convenience.</p>
-                    <form>
+                    <form id="contactForm" class="contactForm" role="form" action="contact.php" method="post">
+                        <input hidden name="type" type="hidden" id="type" class="form-control" value='2' data-msg="Please enter at least 4 chars" />
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" data-rule="minlen:2" data-msg="Please enter your full name." data-rule="required"/>
                                     <label for="name">Your Name</label>
+                                    <div class="validation" style='color: #000000;text-align: left;font-size: 13px;'></div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email." data-rule="required"/>
                                     <label for="email">Your Email</label>
+                                    <div class="validation" style='color: #000000;text-align: left;font-size: 13px;'></div>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                    <input type="text" class="form-control" id="subject" name="issue" placeholder="Subject" data-msg="Please write something for us." data-rule="required"/>
                                     <label for="subject">Subject</label>
+                                    <div class="validation" style='color: #000000;text-align: left;font-size: 13px;'></div>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
+                                    <textarea class="form-control" placeholder="Leave a message here" id="message" name="message" style="height: 100px" data-msg="Please write something for us." data-rule="required"></textarea>
                                     <label for="message">Message</label>
+                                    <div class="validation" style='color: #000000;text-align: left;font-size: 13px;'></div>
                                 </div>
                             </div>
+                            <!-- form message -->
+                            <!-- <p><span id="sendmessage"></span></p>
+                            <div class="errormessage text-center" id="errormessage"></div>-->
+                            <!-- Send message -->
                             <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                                <button onclick="showHint()" type="submit" class="btn btn-primary w-100 py-3">Send Message</button>
                             </div>
                         </div>
                     </form>
@@ -275,6 +284,9 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="js/contactform/contactform.js"></script>
+    <script src="js/contactform/newsletter_form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>

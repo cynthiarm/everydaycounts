@@ -194,9 +194,12 @@
     <!-- Service Start -->
     <div class="container-xxl py-5">
         <div class="container">
-            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h4 class="section-title">Our Services</h4>
-                <h1 class="display-5 mb-4">Power Your Business Forward with Expert Services.</h1>
+            <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s">
+                    <h4 class="section-title">Our Services</h4>
+                    <h1 class="display-5">Power Your Business Forward with Expert Services.</h1>
+                    <h2>From Payroll to IT, Accounting to Dispatch, We Simplify, Streamline, and Transform Your Operations.</h2>
+                </div>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -320,7 +323,7 @@
                                     <h3>Property Taxes</h3>
                                     <p class="mb-0">With expert knowledge and a results-driven approach, we deliver tailored services in property tax, permits, royalty, and advertising—ensuring compliance and maximizing value for your business.</p></br>
                                     <div class="d-flex align-items-center">
-                                        <a class="btn btn-primary py-3 px-5" href="nosotros.html">Read More</a>              
+                                        <a class="btn btn-primary py-3 px-5" href="about.html">Read More</a>              
                                     </div>
                                 </div>
                             </div>
@@ -692,10 +695,18 @@
                 <div class="col-lg-3 col-md-6">
                     <h3 class="text-light mb-4">Newsletter</h3>
                     <p>Subscribe to our newsletter to get more information.</p>
-                    <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SIGN UP</button>
-                    </div>
+                    <form id="newsletter_form" class="newsletter_form" role="form" action="newsletter_form.php" method="post">
+                        <input hidden name="type" type="hidden" id="type" class="form-control" value='1' data-msg="Please enter at least 4 chars" />
+                        <div class="position-relative mx-auto" style="max-width: 400px;">
+                            <input class="form-control bg-transparent w-100 py-3 ps-3 pe-5" type="email" placeholder="Your email" id="email" name="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your mail'" placeholder="Enter your mail" data-rule="email" data-msg="Please enter a valid email." data-rule="required">
+                            <div class="validation"></div>
+                            <!-- form message -->
+                            <p><span id="sendmessage"></span></p>
+                            <div class="newslettermessage" id="newslettermessage"></div>
+                            <!-- Send message -->
+                            <button onclick="showHint()" type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SIGN UP</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

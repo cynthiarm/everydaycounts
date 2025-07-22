@@ -58,14 +58,14 @@ try {
     }
 
     
-    $header = 'From: CYD Global Info <info@cyd-global.com>'. "\r\n";
+    $header = 'From: Every Day Counts Info <info@cyd-global.com>'. "\r\n";
     $header .= "X-Mailer: PHP/" . phpversion() . "\r\n";
     $header .= "Mime-Version: 1.0" . "\r\n";
     $header .= "Content-Type: text/html; charset=UTF-8". "\r\n";
 
-    $image = base64_encode(file_get_contents("assets/images/logo/Logo SG 120x120.png"));
-    $logo = 'assets/images/logo/Logo SG 120x120.png';
-    $link = 'https://cyd-global.com/';
+    $image = base64_encode(file_get_contents("img/logo/edc - header.png"));
+    $logo = 'img/logo/edc - header.png';
+    $link = 'https://everydaycounts.com';
 
 // SMTP configuration
     $mail->SMTPDebug = 0;
@@ -78,7 +78,7 @@ try {
     $mail->Port = 465; // SMTP port (typically 587 for TLS or 465 for SSL)
 
     // Sender and recipient details
-    $mail->setFrom('info@cyd-global.com', 'CYD Global Info!');
+    $mail->setFrom('info@cyd-global.com', 'Every Day Counts Info!');
     $mail->addAddress('crenteria@deviseis.com');
 
     // Email subject and body
@@ -88,9 +88,9 @@ try {
     $mail->Body .= "<a href='{$link}'><img src='{$logo}' alt=''></a><br><br>";
     $mail->Body .= "<h1>$hello</h1>";
     $mail->Body .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
-    $mail->Body .= "<tr style='background: #EDFAFD;'><td align='right'><strong>$nameLang</strong> </td><td>" . $name . "</td></tr>";
+    $mail->Body .= "<tr style='background: #63BEBF;'><td align='right'><strong>$nameLang</strong> </td><td>" . $name . "</td></tr>";
     $mail->Body .= "<tr><td align='right'><strong> $emailLang</strong> </td><td>" . $email . "</td></tr>";
-    $mail->Body .= "<tr style='background: #EDFAFD;'><td align='right'><strong>$issueLang</strong> </td><td>". $issue . "</td></tr>";
+    $mail->Body .= "<tr style='background: #63BEBF;'><td align='right'><strong>$issueLang</strong> </td><td>". $issue . "</td></tr>";
     $mail->Body .= "<tr><td align='right'><strong>$messageLang</strong> </td><td>" .  trim($_POST["message"]) . "</td></tr>";
     $mail->Body .= "</table>";
     $mail->Body .= "</body></html>";
