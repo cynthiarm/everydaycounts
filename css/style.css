@@ -159,7 +159,7 @@ h6,
 .navbar .dropdown-menu {
   position: absolute;
   z-index: 1000;
-  display: none;
+  /* display: none; */
   min-width: 10rem;
   /* padding: .5rem 0; */
   margin: 0;
@@ -213,8 +213,6 @@ h6,
         transition: .5s;
         opacity: 1;
     }
-
-
 }
 
 
@@ -895,7 +893,7 @@ h6,
   }
 
   .navmenu .dropdown-menu {
-    transform: translate(0px, 46px) !important;
+    transform: translate(0px, 36px) !important;
   }
 
   .navmenu .dropdown ul {
@@ -1810,7 +1808,7 @@ section,
   align-content: center;
 }
 
-.footer-logo{
+.footer .footer-logo{
 
   align-content: center;
 }
@@ -1965,68 +1963,68 @@ section,
   }
 
   .why-img1 {
-  position: relative;
-  height: 100%;
-  /* min-height: 300px; */
-  display: flex;
-  align-items: center;
-  padding: 0px;
+    position: relative;
+    height: 100%;
+    /* min-height: 300px; */
+    display: flex;
+    align-items: center;
+    padding: 0px;
   }
 
 
   .why-img1 img {
-  position: absolute;
-  width: 95%;
-  height: 90%;
-  object-fit: cover;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    width: 95%;
+    height: 90%;
+    object-fit: cover;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   }
 
   /*** services  ***/
   .service-list ul li {
-  padding: 0 0 10px 0!important;
-  font-weight: 400;
-  display: flex;
+    padding: 0 0 10px 0!important;
+    font-weight: 400;
+    display: flex;
   }
 
   .service-list ul i {
-  color:#63BEBF ;
-  font-size: 1.25rem;
-  line-height: 1.2;
-  margin-right: 0.5rem;
+    color:#63BEBF ;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    margin-right: 0.5rem;
   }
 
   .service-list i {
-  color: #63bebf !important;
-  line-height: 1.4!important;
+    color: #63bebf !important;
+    line-height: 1.4!important;
   }
 
   .service-list ol, ul {
-  padding-left: .5rem;
+    padding-left: .5rem;
   }
 
   /*** benefits  ***/
   .benefits-list ul li {
-  padding: 0 0 15px 0;
-  font-weight: 400;
-  display: flex;
+    padding: 0 0 15px 0;
+    font-weight: 400;
+    display: flex;
   }
 
   .benefits-list ul i {
-  color:#63BEBF ;
-  font-size: 1.25rem;
-  line-height: 1.2;
-  margin-right: 0.5rem;
+    color:#63BEBF ;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    margin-right: 0.5rem;
   }
 
   .benefits-list ol, ul {
-  padding-left: .5rem;
+    padding-left: .5rem;
   }
 
 
   .benefits-list i {
-  color: #63bebf !important;
-  line-height: 1.4!important;
+   color: #63bebf !important;
+    line-height: 1.4!important;
   }
 
   .benefits img,
@@ -2143,6 +2141,7 @@ section,
     padding: 25px 0;
     font-size: 15px;
     border-top: 1px solid rgba(256, 256, 256, .1);
+    margin-bottom: 18%;
   }
 
   .footer .copyright a {
@@ -2167,4 +2166,42 @@ section,
     padding-top: 100px;
     padding-bottom: 110px;
   }
+  
+  .footer .footer_top .footer_logo {
+    margin-bottom: 30px;
+    width: 50%;
+  }
+
+
+}
+
+.contact-button,.dropdown-toggle {
+  display: inline-block !important;
+}
+
+.contact-button, .dropdown-menu-index {
+  margin-left: 1em !important;
+}
+
+.dropdown-menu-index {
+  margin-top: -.5em !important;
+}
+
+.dropdown-arrow {
+  display: inline-block;
+  margin-left: 0.25em;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-left: 0.3em solid transparent;
+}
+
+.index-dropdown .dropdown-toggle::after {
+  display: none !important;
+}
+
+.dropdown-active {
+  display: block !important;
 }
