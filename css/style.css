@@ -810,6 +810,7 @@ transition: background-color 0.3s;
   .footer {
     padding-top: 30px;
     padding-bottom: 20px;
+    text-align: center;
   }
 
   .footer .footer-logo img {
@@ -818,7 +819,20 @@ transition: background-color 0.3s;
 
   .footer .footer-links {
     gap: 8px;
+    text-align: center;
   }
+
+  .footer .btn.btn-link {
+    display: block;
+    margin-bottom: 5px;
+    padding: 0;
+    text-align: left;
+    color: #FFFFFF;
+    font-weight: normal;
+    text-transform: capitalize;
+    transition: .3s;
+    text-align: center!important;
+  }S
 
   .footer .copyright {
     font-size: 14px;
@@ -1730,6 +1744,7 @@ section,
 
 .footer .footer-logo{
   align-content: center;
+  text-align: center;
 }
 
 .footer .footer-logo img {
@@ -1868,7 +1883,7 @@ section,
     position: relative;
     height: 100%;
     min-height: 400px;
-    width: auto;
+    width: 650px!important;
   }
 
   .why-img img {
@@ -2082,6 +2097,23 @@ section,
     padding-top: 100px;
     padding-bottom: 110px;
   }
+
+  .footer .footer-links {
+    gap: 8px;
+    text-align: center;
+  }
+
+  .footer .btn.btn-link {
+    display: block;
+    margin-bottom: 5px;
+    padding: 0;
+    text-align: left;
+    color: #FFFFFF;
+    font-weight: normal;
+    text-transform: capitalize;
+    transition: .3s;
+    text-align: center!important;
+  }
   
   .footer .footer_top .footer_logo {
     margin-bottom: 30px;
@@ -2093,7 +2125,7 @@ section,
   }
 
   .details h4 {
-    font-size: 48px;
+    font-size: 36px;
     font-weight: 700;
     margin-bottom: 20px;
   }
@@ -2107,6 +2139,14 @@ section,
     padding-bottom: 180px;
     margin-bottom: 8rem;
   }
+
+  .details img, .details img {
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    width: 100% !important;
+    margin-left: 0px;
+    margin-top: 30px;
+  }
 }
 
 @media (min-width: 1024px) and (max-width: 1366px)  {
@@ -2114,6 +2154,20 @@ section,
     font-size: 14px;
     padding-bottom: 50px;
     margin-bottom: 28rem;
+  }
+
+  .why-img {
+    position: relative;
+    height: 100%;
+    min-height: 400px;
+    width: 650px!important;
+  }
+
+  .why-img {
+    position: relative;
+    height: 100%;
+    min-height: 400px;
+    width: 430px!important;
   }
 }
 
