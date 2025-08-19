@@ -58,27 +58,27 @@ try {
     }
 
     
-    $header = 'From: Every Day Counts Info <info@cyd-global.com>'. "\r\n";
+    $header = 'From: Every Day Counts Info <info@everydaycountservices.com>'. "\r\n";
     $header .= "X-Mailer: PHP/" . phpversion() . "\r\n";
     $header .= "Mime-Version: 1.0" . "\r\n";
     $header .= "Content-Type: text/html; charset=UTF-8". "\r\n";
 
     $image = base64_encode(file_get_contents("img/logo/edc - header.png"));
     $logo = 'img/logo/edc - header.png';
-    $link = 'https://everydaycounts.com';
+    $link = 'https://everydaycountservices.com';
 
 // SMTP configuration
     $mail->SMTPDebug = 0;
     $mail->isSMTP();
-    $mail->Host = 'cyd-global.com'; // Your SMTP server
+    $mail->Host = 'everydaycounts.com'; // Your SMTP server
     $mail->SMTPAuth = true; // Enable SMTP authentication
-    $mail->Username = 'info@cyd-global.com'; // SMTP username
-    $mail->Password = 'Info20#24#'; // SMTP password
+    $mail->Username = 'info@everydaycountservices.com'; // SMTP username
+    $mail->Password = 'Every20#25#'; // SMTP password
     $mail->SMTPSecure = 'ssl'; // Enable TLS encryption, 'ssl' also accepted
     $mail->Port = 465; // SMTP port (typically 587 for TLS or 465 for SSL)
 
     // Sender and recipient details
-    $mail->setFrom('info@cyd-global.com', 'Every Day Counts Info!');
+    $mail->setFrom('info@everydaycountservices.com', 'Every Day Counts Info!');
     $mail->addAddress('crenteria@deviseis.com');
 
     // Email subject and body
