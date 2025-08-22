@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Thanks for subscribing!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin:0; padding:0; background:#f2f4f7; font-family: Arial, sans-serif;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background:#f2f4f7; padding:20px 0;">
+    <tr>
+      <td align="center">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="600" style="max-width:600px; background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+          
+          <!-- Header -->
+          <tr>
+            <td align="center" style="background:#17283b; padding:30px;">
+              <img src="cid:logoimg" alt="Logo">
+              <h1 style="margin:0; font-size:22px; color:#ffffff; font-weight:bold;">Welcome to Every Day Counts!</h1>
+            </td>
+          </tr>
+          
+          <!-- Content -->
+          <tr>
+            <td style="padding:30px; color:#333333; font-size:15px; line-height:1.6;">
+              <p style="margin:0 0 16px;">Hi {{name}},</p>
+              <p style="margin:0 0 16px;">Thanks for subscribing to our newsletter. 🎉</p>
+              <p style="margin:0 0 16px;">From now on, you’ll receive our latest <b>news</b> straight to your inbox.</p>
+              
+              <!-- Call to Action -->
+              <div style="text-align:center; margin:30px 0;">
+                <a href="{{cta_url}}" target="_blank" 
+                   style="background:#63BEBF; color:#ffffff; text-decoration:none; padding:12px 24px; border-radius:6px; font-weight:bold; font-size:14px; display:inline-block;">
+                   Explore Now
+                </a>
+              </div>
+              
+              <p style="margin:0;">Thanks for joining us!<br>
+              — The Every Day Counts Team</p>
+            </td>
+          </tr>
+          
+          <!-- Footer -->
+          <tr>
+            <td align="center" style="background:#f0f0f0; padding:20px; font-size:12px; color:#777777;">
+              <p style="margin:0;">© Every Day Counts - This message was sent from the contact form.</p>
+              <p style="margin:8px 0 0;">
+             <!--   <a href="{{unsubscribe_url}}" target="_blank" style="color:#63BEBF; text-decoration:none;">Unsubscribe</a>-->
+              </p>
+            </td>
+          </tr>
+          
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

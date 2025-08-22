@@ -1,130 +1,60 @@
-jQuery(document).ready(function($) {
-  "use strict";
-  
-  //Contact
-  $('.newsletter_form').submit(function() {
-    var f = $(this).find('.form-control'),
-      ferror = false, 
-      emailExp = /^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$/i;
-    console.log(f);
-    f.each(function() { // run all inputs
+$(document).ready(function () {
+  $("#newsletter_form").on("submit", function (e) {
+    e.preventDefault();
 
-      var i = $(this); // current input
-      // Detect if this field is email based on its type
-      console.log(i);
-      if (i.attr('type') === 'email') {
-        if (!emailExp.test(i.val())) {
-          ferror = ierror = true;
-        }
-      }
+    var $form = $(this);
 
-      var rule = i.attr('data-rule');
+    // Evitar doble envío
+    if ($form.data("sending") === true) return false;
+    $form.data("sending", true);
 
-      if (rule !== undefined) {
-        var ierror = false; // error flag for current input
-        var pos = rule.indexOf(':', 0);
-        if (pos >= 0) {
-          var exp = rule.substr(pos + 1, rule.length);
-          rule = rule.substr(0, pos);
-        } else {
-          rule = rule.substr(pos + 1, rule.length);
-        }
+    var email = $form.find("input[name='newsletter_email']").val().trim();
+    var validationDiv = $form.find(".validation");
+    var type = parseInt($form.find("input[name='type']").val()) || 1; // 1=ES, 2=EN
 
-        switch (rule) {
-          case 'required':
-            if (i.val() === '') {
-              ferror = ierror = true;
-            }
-            break;
+    validationDiv.html("").hide();
 
-          case 'minlen':
-            if (i.val().length < parseInt(exp)) {
-              ferror = ierror = true;
-            }
-            break;
+    // Mensajes según idioma
+    var msgEmpty = (type === 1) ? 'Por favor, ingrese un correo electrónico.' : 'Please enter an email address.';
+    var msgInvalid = (type === 1) ? 'Escriba una dirección de correo electrónico válida.' : 'Please enter a valid email address.';
 
-          case 'email':
-            if (!emailExp.test(i.val())) {
-              ferror = ierror = true;
-            }
-            break;
-
-          case 'checked':
-            if (! i.is(':checked')) {
-              ferror = ierror = true;
-            }
-            break;
-
-          case 'regexp':
-            exp = new RegExp(exp);
-            if (!exp.test(i.val())) {
-              ferror = ierror = true;
-            }
-            break;
-        }
-        i.next('.validation').html((ierror ? (i.attr('data-msg') !== undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
-      }
-    });
-    f.children('textarea').each(function() { // run all inputs
-
-      var i = $(this); // current input
-      var rule = i.attr('data-rule');
-
-      if (rule !== undefined) {
-        var ierror = false; // error flag for current input
-        var pos = rule.indexOf(':', 0);
-        if (pos >= 0) {
-          var exp = rule.substr(pos + 1, rule.length);
-          rule = rule.substr(0, pos);
-        } else {
-          rule = rule.substr(pos + 1, rule.length);
-        }
-
-        switch (rule) {
-          case 'required':
-            if (i.val() === '') {
-              ferror = ierror = true;
-            }
-            break;
-
-          case 'minlen':
-            if (i.val().length < parseInt(exp)) {
-              ferror = ierror = true;
-            }
-            break;
-        }
-        i.next('.validation').html((ierror ? (i.attr('data-msg') != undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
-      }
-    });
-    if (ferror) return false;
-    else var str = $(this).serialize();
-    var action = $(this).attr('action');
-    if( ! action ) {
-      action = 'assets/contactform/newsletter_form.php';
+    // Validación básica
+    if (email === '') {
+        validationDiv.html(msgEmpty).show();
+        $form.data("sending", false);
+        return false;
     }
 
-    
-    $.ajax({
-      type: "POST",
-      url: action,
-      data: str,
-      success: function(msg) {
-         //alert(msg);
-        if (msg == 'OK') {
-          $(".sendmessage").addClass("show");
-          $(".newslettermessage").removeClass("show");
-          $('.newsletter_form').find("input, textarea").val("");
-        } else {
-          $(".newslettermessage").removeClass("show");
-          $(".newslettermessage").addClass("show");
-          $('.newslettermessage').html(msg);
-        }
+    var emailExp = /^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$/i;
+    if (!emailExp.test(email)) {
+        validationDiv.html(msgInvalid).show();
+        $form.data("sending", false);
+        return false;
+    }
 
-      }
-    });
-    return false;
+      $.ajax({
+          type: "POST",
+          url: action,
+          data: str,
+          success: function (msg) {
+              msg = msg.trim();
+              if (msg === "OK_NEWSLETTER_ES") {
+                  $("#sendmessage_newsletter").addClass("show").html("¡Gracias por suscribirte!");
+                  $("#errormessage_newsletter").removeClass("show").html("");
+                  $('#newsletter_form')[0].reset();
+              } else if (msg === "OK_NEWSLETTER_EN") {
+                  $("#sendmessage_newsletter").addClass("show").html("Thanks for subscribing!");
+                  $("#errormessage_newsletter").removeClass("show").html("");
+                  $('#newsletter_form')[0].reset();
+              } else {
+                  $("#errormessage_newsletter").addClass("show").html(msg);
+              }
+              $("#newsletter_form").data("sending", false);
+          },
+          error: function () {
+              $("#errormessage_newsletter").addClass("show").html("❌ Error de conexión.");
+              $("#newsletter_form").data("sending", false);
+          }
+      });
   });
-
 });
-
-

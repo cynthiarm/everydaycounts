@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Someone is trying to reach you by using your Every Day Counts website!</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      background: #ffffff;
+      margin: auto;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .header {
+      background: #17283b;
+      color: #ffffff;
+      padding: 20px;
+      text-align: center;
+    }
+    .header img {
+      max-height: 50px;
+      margin-bottom: 10px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .content {
+      padding: 20px;
+      color: #333333;
+      line-height: 1.5;
+    }
+    .content p {
+      margin: 8px 0;
+    }
+    .highlight {
+      font-weight: bold;
+      color: #63BEBF;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #63BEBF;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .footer {
+      background: #f0f0f0;
+      text-align: center;
+      padding: 15px;
+      font-size: 12px;
+      color: #777777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <div class="header">
+      <img src="cid:logoimg" alt="Logo">
+      <h1>New contact message</h1>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <p><span class="highlight">Name:</span> {{name}}</p>
+      <p><span class="highlight">E-mail:</span> {{email}}</p>
+      <p><span class="highlight">Subject:</span> {{issue}}</p>
+      <p><span class="highlight">Message:</span><br>{{message}}</p>
+
+      <!-- Botón de respuesta rápida -->
+      <p style="text-align: center;">
+        <a href="mailto:{{email}}?subject=Re: {{issue}}" class="btn">Reply to customer</a>
+      </p>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      © Every Day Counts - This message was sent from the contact form.
+    </div>
+  </div>
+</body>
+</html>

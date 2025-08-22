@@ -26,97 +26,67 @@ try {
     $subject = $_POST['subject'];
     $bodyEmail = $_POST['message'];
 
-    $hello = '';
-    $emailLang = '';
-    $nameLang = '';
-    $issueLang = '';
-    $messageLang = '';
-    $subjectLang = '';
-    $subject = '';
-    $headers = '';
-
-    $hello = 'Hello';
-    $emailLang = 'Email:';
-    $nameLang = 'Name:';
-    $issueLang = 'Subject:';
-    $subjectLang = '';
-    $messageLang = 'Message:';
-
-    if($type == '1' )
-    {
-        $hello = 'Hola';
-        $emailLang = 'Correo Electrónico:';
-        $subject = '¡Alguien está tratando de comunicarse con usted a través de su sitio web de Every Day Counts!';
-        $fromname = "¡Alguien está tratando de comunicarse con usted a través de su sitio web de Every Day Counts!";      
-
-    }
-    else if($type == '2'){
-        $hello = 'Hello';
-        $emailLang = 'Email:';
-        $subject = 'Someone is trying to reach you by using your Every Day Counts website!';
-        $fromname = "Someone is trying to reach you by using your Every Day Counts website!";       
-    }
-
-    
-    $header = 'From: Every Day Counts Info <info@everydaycountservices.com>'. "\r\n";
+    $header = 'From: Every Day Counts Info <noreply@everydaycountservices.com>'. "\r\n";
     $header .= "X-Mailer: PHP/" . phpversion() . "\r\n";
     $header .= "Mime-Version: 1.0" . "\r\n";
     $header .= "Content-Type: text/html; charset=UTF-8". "\r\n";
 
-    $image = base64_encode(file_get_contents("img/logo/edc - header.png"));
-    $logo = 'img/logo/edc - header.png';
+    $image = base64_encode(file_get_contents("img/logo/edcblanco-120x.png"));
+    $logo = 'img/logo/edcblanco-120x.png';
     $link = 'https://everydaycountservices.com';
 
 // SMTP configuration
     $mail->SMTPDebug = 0;
     $mail->isSMTP();
-    $mail->Host = 'everydaycounts.com'; // Your SMTP server
+    $mail->Host = 'everydaycountservices.com'; // Your SMTP server
     $mail->SMTPAuth = true; // Enable SMTP authentication
-    $mail->Username = 'info@everydaycountservices.com'; // SMTP username
+    $mail->Username = 'noreply@everydaycountservices.com'; // SMTP username
     $mail->Password = 'Every20#25#'; // SMTP password
     $mail->SMTPSecure = 'ssl'; // Enable TLS encryption, 'ssl' also accepted
     $mail->Port = 465; // SMTP port (typically 587 for TLS or 465 for SSL)
+    $mail->CharSet    = 'UTF-8';
 
     // Sender and recipient details
-    $mail->setFrom('info@everydaycountservices.com', 'Every Day Counts Info!');
+    $mail->setFrom('noreply@everydaycountservices.com', 'Every Day Counts Info!');
     $mail->addAddress('crenteria@deviseis.com');
 
     // Email subject and body
     $mail->isHTML(true);
-    $mail->Subject = $subject;
-    $mail->Body = '<html><body>';
-    $mail->Body .= "<a href='{$link}'><img src='{$logo}' alt=''></a><br><br>";
-    $mail->Body .= "<h1>$hello</h1>";
-    $mail->Body .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
-    $mail->Body .= "<tr style='background: #63BEBF;'><td align='right'><strong>$nameLang</strong> </td><td>" . $name . "</td></tr>";
-    $mail->Body .= "<tr><td align='right'><strong> $emailLang</strong> </td><td>" . $email . "</td></tr>";
-    $mail->Body .= "<tr style='background: #63BEBF;'><td align='right'><strong>$issueLang</strong> </td><td>". $issue . "</td></tr>";
-    $mail->Body .= "<tr><td align='right'><strong>$messageLang</strong> </td><td>" .  trim($_POST["message"]) . "</td></tr>";
-    $mail->Body .= "</table>";
-    $mail->Body .= "</body></html>";
-
     $mail->CharSet = 'UTF-8';
-    $mail->send();
-    // Send email
+    $mail->Subject = $subject;
+    $type = isset($_POST["type"]) ? intval($_POST["type"]) : 2; // default inglés
+    // Adjuntar el logo al correo
+    $mail->AddEmbeddedImage(__DIR__ . "/img/logo/edcblanco-120x.png", "logoimg");
 
-    if(!$mail->send()){
-        if($type == '1' ){
-            error_log("<div style='color: #8f8a8a;text-align: left;margin-left: 20px;font-size: 16px;font-family: Helvetica Neue, Helvetica, Arial, sans-serif;'> No se pudo enviar el correo! " . $mail->ErrorInfo); die();
-        }
-        else if($type == '2'){
-            error_log("<div style='color: #8f8a8a;text-align: left;margin-left: 20px;font-size: 16px;font-family: Helvetica Neue, Helvetica, Arial, sans-serif;'>Message could not be sent." .  $mail->ErrorInfo);die();
-        }    
-    } 
-    if($type == '1' ){
-            echo "<div style='color: #8f8a8a;text-align: left;margin-left: 20px;font-size: 16px;font-family: Helvetica Neue, Helvetica, Arial, sans-serif;'>Mensaje enviado correctamente."; die();
+    if($type === 1){
+        $template = file_get_contents(__DIR__ . '/emailbody-esp.html');
+        $mail->Subject = "¡Alguien está tratando de comunicarse con usted!";
+    } else {
+        $template = file_get_contents(__DIR__ . '/emailbody-eng.html');
+        $mail->Subject = "Someone is trying to reach you!";
     }
-    else if($type == '2'){
-        echo "<html>";
-        echo "<div style='color: #8f8a8a;text-align: left;margin-left: 20px;font-size: 16px;font-family: Helvetica Neue, Helvetica, Arial, sans-serif;'>Your message has been sent."; die();
+
+    // Reemplazar placeholders en la plantilla
+    $mail->Body = str_replace(
+        ["{{name}}", "{{email}}", "{{issue}}", "{{message}}"],
+        [$name, $email, $issue, nl2br($message)],
+        $template
+    );
+
+    // Enviar correo
+
+    if($mail->send()) {
+        echo ($type === 1) ? "OK_CONTACT_ES" : "OK_CONTACT_EN";
+    } else {
+        echo ($type === 1) ? "ERROR_CONTACT_ES" : "ERROR_CONTACT_EN";
     }
 
 } catch (Exception $e) {
-
+    echo ($type === 1) 
+        ? "ERROR_CONTACT_ES" 
+        : "ERROR_CONTACT_EN";
 }
 ?>
+
+
 

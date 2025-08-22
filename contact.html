@@ -82,8 +82,8 @@
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span class="fa fa-light fa-globe"></span></a>
                     <div class="dropdown-menu fade-up m-0">
-                        <a href="index.html" class="dropdown-item active">English</a>
-                        <a href="inicio.html" class="dropdown-item">Spanish</a>
+                        <a href="contact.html" class="dropdown-item active">English</a>
+                        <a href="contacto.html" class="dropdown-item">Spanish</a>
                     </div>
                 </li>      
             </div>                      
@@ -151,43 +151,44 @@
                 <div class="col-lg-9 mx-auto" data-wow-delay="0.5s">
                     <p class="mb-4">Please do not hesitate to contact us should you require any further information. Kindly send us a message, and we will respond at our earliest convenience.</p>
                     <form id="contactForm" class="contactForm" role="form" action="contact.php" method="post">
-                        <input hidden name="type" type="hidden" id="type" class="form-control" value='2' data-msg="Please enter at least 4 chars" />
+                        <input hidden name="type" type="hidden" id="type" class="form-control" value='2' required minlength="Please enter at least 4 chars" />
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" data-rule="minlen:2" data-msg="Please enter your full name." data-rule="required"/>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" data-rule="minlen:2" data-msg="Please enter your full name." data-rule="required">
                                     <label for="name">Your Name</label>
-                                    <div class="validation" style='color: #000000;text-align: left;font-size: 13px;'></div>
+                                    <div class="validation"></div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email." data-rule="required"/>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email." data-rule="required">
                                     <label for="email">Your Email</label>
-                                    <div class="validation" style='color: #000000;text-align: left;font-size: 13px;'></div>
+                                    <div class="validation"></div>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" name="issue" placeholder="Subject" data-msg="Please write something for us." data-rule="required"/>
+                                    <input type="text" class="form-control" id="subject" name="issue" placeholder="Subject" data-msg="Please write something for us." data-rule="required">
                                     <label for="subject">Subject</label>
-                                    <div class="validation" style='color: #000000;text-align: left;font-size: 13px;'></div>
+                                    <div class="validation"></div>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="Leave a message here" id="message" name="message" style="height: 100px" data-msg="Please write something for us." data-rule="required"></textarea>
                                     <label for="message">Message</label>
-                                    <div class="validation" style='color: #000000;text-align: left;font-size: 13px;'></div>
+                                    <div class="validation"></div>
                                 </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button onclick="showHint()" type="submit" class="btn btn-primary w-100 py-3">Send Message</button>
                             </div>
                             <!-- form message -->
                             <p><span id="sendmessage"></span></p>
                             <div class="errormessage text-center" id="errormessage"></div>
                             <!-- Send message -->
-                            <div class="col-12">
-                                <button onclick="showHint()" type="submit" class="btn btn-primary w-100 py-3">Send Message</button>
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -210,12 +211,12 @@
     <div class="footer container-fluid bg-dark text-body mt-5 pt-5 px-0 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
+                <div class="col">
                     <div class="footer-logo">
-                        <a href="index.html"><img src="img/logo/edc blanco - footer.png"></a> 
+                        <a href="index.html"><img src="img/logo/edc blanco - footer.png"></a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                <div class="col">
                     <div class="footer-links">
                         <h3 class="text-light mb-4">Every Day Counts</h3>
                         <a class="btn btn-link" href="about.html">About Us</a>
@@ -225,21 +226,22 @@
                         <a class="btn btn-link" href="terms.html">Terms and Conditions</a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <h3 class="text-light mb-4">Newsletter</h3>
-                    <p>Subscribe to our newsletter to get more information.</p>
-                    <form id="newsletter_form" class="newsletter_form" role="form" action="newsletter_form.php" method="post">
-                        <input hidden name="type" type="hidden" id="type" class="form-control" value='1' data-msg="Please enter at least 4 chars" />
-                        <div class="position-relative mx-auto" style="max-width: 400px;">
-                            <input class="form-control bg-transparent w-100 py-3 ps-3 pe-5" type="email" placeholder="Your email" id="email" name="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your mail'" placeholder="Enter your mail" data-rule="email" data-msg="Please enter a valid email." data-rule="required">
-                            <div class="validation"></div>
-                            <!-- form message -->
-                            <p><span id="sendmessage"></span></p>
-                            <div class="newslettermessage" id="newslettermessage"></div>
-                            <!-- Send message -->
-                            <button onclick="showHint()" type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SIGN UP</button>
-                        </div>
-                    </form>
+                <div class="col">
+                    <div class="footer-newsletter">
+                        <h3 class="text-light mb-4">Newsletter</h3>
+                        <p>Subscribe to our newsletter to get more information.</p>
+                        <form id="newsletter_form" class="newsletter_form" role="form" action="newsletter_form.php" method="post" novalidate>
+                            <input type="hidden" name="type" id="type" value="2">
+                            <div class="position-relative mx-auto" style="max-width: 400px;">
+                                <input type="email" class="form-control bg-transparent w-100 py-3 ps-3 pe-5" id="newsletter_email" name="newsletter_email" placeholder="Enter your mail" data-msg="Please enter a valid email" required>
+                                <div class="validation"></div>
+                                <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SIGN UP</button>
+                                <!-- Mensajes -->
+                                <div id="sendmessage_newsletter" class="sendmessage_newsletter"></div>
+                                <div id="errormessage_newsletter" class="errormessage_newsletter"></div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -265,7 +267,7 @@
 
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
