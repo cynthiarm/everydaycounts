@@ -48,7 +48,7 @@ try {
 
     // Sender and recipient details
     $mail->setFrom('noreply@everydaycountservices.com', 'Every Day Counts Info!');
-    $mail->addAddress('crenteria@deviseis.com');
+    $mail->addAddress('info@everydaycountservices.com');
 
     // Email subject and body
     $mail->isHTML(true);
